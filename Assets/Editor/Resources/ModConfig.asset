@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
+  m_Name: ModConfig
+  m_EditorClassIdentifier: 
+  id: pictionaryModule
+  title: Pictionary
+  author: catcraze777
+  description: '"What do you mean you don''t see it!? Its obvious!"
+
+
+    A simple module that depends on pictures to figure out the code.
+
+
+    Created by catcraze777.
+
+    Manual also included. Will post in repository later.
+
+
+    If any problem is found, please leave a comment about it on the workshop page
+    so I can try to fix it.'
+  version: 1.0
+  outputFolder: build
+  previewImage: {fileID: 2800000, guid: 841bb98c91eb1cc4ca31d8ae4fb04e80, type: 3}
