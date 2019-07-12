@@ -14,19 +14,11 @@ MonoBehaviour:
   id: pictionaryModule
   title: Pictionary
   author: catcraze777
-  description: '"What do you mean you don''t see it!? Its obvious!"
-
-
-    A simple module that depends on pictures to figure out the code.
-
-
-    Created by catcraze777.
-
-    Manual also included. Will post in repository later.
-
-
-    If any problem is found, please leave a comment about it on the workshop page
-    so I can try to fix it.'
-  version: 1.0
+  description: "\"What do you mean you don't see it!? Its obvious!\"\r\n\r\nA simple
+    module that depends on pictures to figure out the code.\r\n\r\nCreated by catcraze777.\r\nManual
+    also included.\r\nManual PDF: https://ktane.timwi.de/PDF/Pictionary.pdf\r\nManual
+    HTML: https://ktane.timwi.de/HTML/Pictionary.html\r\n\r\nIf any problem is found,
+    please leave a comment about it on the workshop page so I can try to fix it."
+  version: 1.1
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 841bb98c91eb1cc4ca31d8ae4fb04e80, type: 3}

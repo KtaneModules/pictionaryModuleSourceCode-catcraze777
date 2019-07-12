@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
 using UnityEngine;
+using System.Text.RegularExpressions;
 
 public class pictionaryModuleScript : MonoBehaviour {
 	public KMBombInfo BombInfo;
@@ -36,21 +37,26 @@ public class pictionaryModuleScript : MonoBehaviour {
 	int TR;
 	int BL;
 	int BR;
-	
-	// Use this for initialization
-	void Start () {
-		enabled = false;
+
+    //necessary for logging
+    static int moduleIdCounter = 1;
+    int moduleId;
+
+    // Use this for initialization
+    void Start () {
+        moduleId = moduleIdCounter++;
+        enabled = false;
 		solved = false;
 		currDig = 0;
-		cornerTLPatterns = "01101001011111100001111100001101";
-		cornerTRPatterns = "10010110101111010010111100001110";
-		cornerBLPatterns = "10010110001110110100111100001110";
-		cornerBRPatterns = "01101001001101111000111100001101";
+		cornerTLPatterns = "01101001011111010001111011110000";
+		cornerTRPatterns = "10010110101111100010110111110000";
+		cornerBLPatterns = "10010110001111100100101111110000";
+		cornerBRPatterns = "01101001001111011000011111110000";
 		succsessPattern = "0111101101101001";
-		digitTL = "03472195";
-		digitTR = "16054283";
-		digitBL = "40216375";
-		digitBR = "21038465";
+		digitTL = "03452719";
+		digitTR = "16034528";
+		digitBL = "40256137";
+		digitBR = "21058346";
 		TL = Random.Range(0,8);
 		TR = Random.Range(0,8);
 		BL = Random.Range(0,8);
@@ -92,6 +98,13 @@ public class pictionaryModuleScript : MonoBehaviour {
 			else squares[i].SetActive(false);
 		}
 		enable = true;
+        //logging
+        Debug.LogFormat("[Pictionary #{0}] For logging purposes the pictures will be referenced from the manual in reading order", moduleId);
+        Debug.LogFormat("[Pictionary #{0}] The Top left section of the 4x4 is from Picture {1}", moduleId, TL+1);
+        Debug.LogFormat("[Pictionary #{0}] The Top right section of the 4x4 is from Picture {1}", moduleId, TR+1);
+        Debug.LogFormat("[Pictionary #{0}] The Bottom left section of the 4x4 is from Picture {1}", moduleId, BL+1);
+        Debug.LogFormat("[Pictionary #{0}] The Bottom right section of the 4x4 is from Picture {1}", moduleId, BR+1);
+        Debug.LogFormat("[Pictionary #{0}] The passcode is {1}", moduleId, code);
     }
 	void keyPress(int num){
 		if(num == 1)button1.AddInteractionPunch();
@@ -129,4 +142,85 @@ public class pictionaryModuleScript : MonoBehaviour {
 		}
 		KMAudio.PlaySoundAtTransform("tick", this.transform);
 	}
+
+    //twitch plays
+    private bool inputIsValid(string cmd)
+    {
+        char[] validstuff = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        for(int i = 0; i < cmd.Length; i++)
+        {
+            if (!validstuff.Contains(cmd.ElementAt(i)))
+            {
+
+            }
+        }
+        if(cmd.Length != 4)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    #pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"!{0} submit <num> [Submits the passcode of <num>, valid passcodes must be 4 digits long]";
+    #pragma warning restore 414
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        string[] parameters = command.Split(' ');
+        if (Regex.IsMatch(parameters[0], @"^\s*submit\s*$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
+        {
+            if (parameters.Length == 2)
+            {
+                if (inputIsValid(parameters[1]))
+                {
+                    yield return null;
+                    for(int i = 0; i < parameters[1].Length; i++)
+                    {
+                        if (parameters[1].ElementAt(i).Equals('0'))
+                        {
+                            button0.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('1'))
+                        {
+                            button1.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('2'))
+                        {
+                            button2.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('3'))
+                        {
+                            button3.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('4'))
+                        {
+                            button4.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('5'))
+                        {
+                            button5.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('6'))
+                        {
+                            button6.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('7'))
+                        {
+                            button7.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('8'))
+                        {
+                            button8.OnInteract();
+                        }
+                        else if (parameters[1].ElementAt(i).Equals('9'))
+                        {
+                            button9.OnInteract();
+                        }
+                        yield return new WaitForSeconds(0.1f    );
+                    }
+                }
+            }
+            yield break;
+        }
+    }
 }
