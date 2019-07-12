@@ -51,10 +51,10 @@ public class pictionaryModuleScript : MonoBehaviour {
 		digitTR = "16054283";
 		digitBL = "40216375";
 		digitBR = "21038465";
-		TL = Random.Range(0,8);
-		TR = Random.Range(0,8);
-		BL = Random.Range(0,8);
-		BR = Random.Range(0,8);
+		TL = UnityEngine.Random.Range(0,8);
+		TR = UnityEngine.Random.Range(0,8);
+		BL = UnityEngine.Random.Range(0,8);
+		BR = UnityEngine.Random.Range(0,8);
 		code = digitTL.Substring(TL,1) + digitTR.Substring(TR,1) + digitBL.Substring(BL,1) + digitBR.Substring(BR,1);
 		//code = "1234";
 		foreach(GameObject obj in squares){
